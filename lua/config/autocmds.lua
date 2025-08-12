@@ -16,6 +16,7 @@ function M.setup()
   vim.cmd [[
     highlight CustomFileName guifg=#abcdef guibg=#590055 gui=bold
     highlight CustomGpsOutput guifg=#00186e guibg=#e36fa1 gui=italic
+    highlight CursorLineNr guifg=#ffaa00 gui=bold
   ]]
   
   -- Auto-enable git blame in git repositories

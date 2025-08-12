@@ -9,6 +9,8 @@ function M.setup()
   
   -- General options
   vim.opt.number = true
+  vim.opt.relativenumber = true
+  vim.opt.cursorline = true
   vim.opt.hlsearch = false
   vim.opt.shiftwidth = 3
   vim.opt.mouse = 'a'
@@ -25,6 +27,8 @@ function M.setup()
   vim.o.hlsearch = false
   vim.o.sw = 3
   vim.wo.number = true
+  vim.wo.relativenumber = true
+  vim.wo.cursorline = true
   vim.o.mouse = 'a'
   vim.o.breakindent = true
   vim.o.undofile = true
