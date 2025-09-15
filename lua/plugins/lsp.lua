@@ -59,6 +59,9 @@ function M.setup()
       -- Show hover information
       map('K', vim.lsp.buf.hover, 'Hover Documentation')
 
+      -- Show line diagnostics
+      map('<leader>e', vim.diagnostic.open_float, 'Show line diagnostics')
+
       -- Show signature help
       map('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
