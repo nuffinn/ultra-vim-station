@@ -20,5 +20,6 @@ require('plugins.lsp').setup()
 require('plugins.completion').setup()
 require('plugins.ui').setup()
 require('plugins.windsurf').setup()
+require('plugins.claude-code').setup()
 
 -- vim: ts=2 sts=2 sw=2 et

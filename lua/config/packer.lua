@@ -76,6 +76,12 @@ function M.setup()
     -- Custom plugins
     use { 'augmentcode/augment.vim' }
 
+    -- Claude Code integration for real-time file watching
+    use {
+      'greggh/claude-code.nvim',
+      requires = 'nvim-lua/plenary.nvim',
+    }
+
     -- Autocompletion
     use {
       'hrsh7th/nvim-cmp',
