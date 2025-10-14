@@ -42,4 +42,31 @@ function M.setup()
   end
 end
 
+-- Custom function to add vertical split support to git worktrees picker
+function M.git_worktrees_with_vsplit()
+  local actions = require('telescope.actions')
+  local action_state = require('telescope.actions.state')
+
+  require('telescope').extensions.git_worktree.git_worktrees({
+    attach_mappings = function(_, map)
+      -- Add vertical split mapping
+      map('i', '<C-v>', function(prompt_bufnr)
+        local selection = action_state.get_selected_entry()
+        actions.close(prompt_bufnr)
+        vim.cmd('vsplit')
+        require("git-worktree").switch_worktree(selection.path)
+      end)
+
+      map('n', '<C-v>', function(prompt_bufnr)
+        local selection = action_state.get_selected_entry()
+        actions.close(prompt_bufnr)
+        vim.cmd('vsplit')
+        require("git-worktree").switch_worktree(selection.path)
+      end)
+
+      return true  -- Keep default mappings (<Enter>, <C-d>, <C-f>)
+    end,
+  })
+end
+
 return M

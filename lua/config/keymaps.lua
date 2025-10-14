@@ -58,8 +58,8 @@ function M.setup()
 
   -- Git Worktree keymaps
   vim.keymap.set('n', '<leader>gw', function()
-    require('telescope').extensions.git_worktree.git_worktrees()
-  end, { desc = 'Git worktrees (list/switch/delete)' })
+    require('plugins.git-worktree').git_worktrees_with_vsplit()
+  end, { desc = 'Git worktrees (list/switch/delete/vsplit)' })
 
   vim.keymap.set('n', '<leader>gc', function()
     require('telescope').extensions.git_worktree.create_git_worktree()
