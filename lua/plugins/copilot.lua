@@ -30,7 +30,7 @@ function M.setup()
       hide_during_completion = true,
       debounce = 75,
       keymap = {
-        accept = "<M-l>",
+        accept = "<C-l>",
         accept_word = "<M-w>",
         accept_line = "<M-j>",
         next = "<M-]>",

@@ -19,7 +19,7 @@ function M.setup()
       map_keys = true,
       accept_fallback = nil,
       key_bindings = {
-        accept = "<M-l>",        -- Same as copilot accept
+        accept = "<C-l>",        -- Same as copilot accept
         accept_word = "<M-w>",   -- Same as copilot accept_word
         accept_line = "<M-j>",   -- Same as copilot accept_line
         next = "<M-]>",          -- Same as copilot next
