@@ -6,7 +6,7 @@ function M.setup()
   -- These are created at startup and cause 'gr' to wait for additional keystrokes
   vim.keymap.del('n', 'grr')
   vim.keymap.del('n', 'grn')
-  vim.keymap.del({'n', 'x'}, 'gra')
+  vim.keymap.del({ 'n', 'x' }, 'gra')
   vim.keymap.del('n', 'gri')
   vim.keymap.del('n', 'grt')
 
@@ -40,6 +40,8 @@ function M.setup()
       --  For example, in C this would take you to the header.
       map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
+      map('gC', vim.lsp.buf.rename, '[R]e[n]ame')
+
 
       -- Execute a code action, usually your cursor needs to be on top of an error
       -- or a suggestion from your LSP for this to activate.
@@ -53,6 +55,7 @@ function M.setup()
       --  Similar to document symbols, except searches over your entire project.
       map('gW', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
 
+
       -- Jump to the type of the word under your cursor.
       --  Useful when you're not sure what type a variable is and you want to see
       --  the definition of its *type*, not where it was *defined*.
@@ -64,6 +67,9 @@ function M.setup()
       -- Show line diagnostics
       map('<leader>e', vim.diagnostic.open_float, 'Show line diagnostics')
 
+      -- Show diagnostics with Shift+L
+      map('<S-l>', vim.diagnostic.open_float, 'Show line diagnostics')
+
       -- Show signature help
       map('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
@@ -73,7 +79,8 @@ function M.setup()
       end, '[N]ext [E]rror')
 
       -- Jump to next git change (requires gitsigns plugin)
-      map('gn', function() if package.loaded.gitsigns then
+      map('gn', function()
+        if package.loaded.gitsigns then
           require('gitsigns').next_hunk()
         else
           vim.notify('Gitsigns plugin not available', vim.log.levels.WARN)
@@ -226,7 +233,7 @@ function M.setup()
 
   -- Setup mason
   require('mason').setup()
-  
+
   -- Setup mason-lspconfig
   -- Exclude gopls from Mason management since we use system gopls
   local mason_servers = {}
@@ -235,17 +242,17 @@ function M.setup()
       table.insert(mason_servers, server_name)
     end
   end
-  
+
   require('mason-lspconfig').setup {
     ensure_installed = mason_servers,
     automatic_installation = true,
   }
-  
+
   -- Setup neodev for better Lua LSP
   require('neodev').setup {
     library = { plugins = { 'nvim-dap-ui' }, types = true },
   }
-  
+
   -- Configure LSP servers using vim.lsp.config
   for server_name, server_config in pairs(servers) do
     vim.lsp.config(server_name, {
@@ -256,7 +263,7 @@ function M.setup()
     })
     vim.lsp.enable(server_name)
   end
-  
+
   -- Setup fidget for LSP status
   require('fidget').setup()
 end
