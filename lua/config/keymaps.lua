@@ -67,6 +67,9 @@ function M.setup()
   vim.keymap.set('n', '<leader>gc', function()
     require('telescope').extensions.git_worktree.create_git_worktree()
   end, { desc = 'Git worktree create' })
+
+  -- Copy to linux clipboard
+  vim.keymap.set('v', '<C-y>', '"+y', { desc = 'Copy to linux clipboard' })
 end
 
 return M
