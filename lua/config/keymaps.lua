@@ -70,6 +70,11 @@ function M.setup()
 
   -- Copy to linux clipboard
   vim.keymap.set('v', '<C-y>', '"+y', { desc = 'Copy to linux clipboard' })
+
+  -- Git blame
+  vim.keymap.set('n', '<S-j>', function()
+    require('gitsigns').blame_line({ full = true })
+  end, { desc = 'Show git blame for current line' })
 end
 
 return M
