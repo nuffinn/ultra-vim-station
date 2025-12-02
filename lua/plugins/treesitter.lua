@@ -8,7 +8,7 @@ function M.setup()
 
     highlight = { enable = true },
     indent = { enable = true, disable = { 'python' } },
-    
+
     incremental_selection = {
       enable = true,
       keymaps = {
@@ -18,7 +18,7 @@ function M.setup()
         node_decremental = '<c-backspace>',
       },
     },
-    
+
     textobjects = {
       select = {
         enable = true,
@@ -32,28 +32,28 @@ function M.setup()
           ['ic'] = '@class.inner',
         },
       },
-      
+
       move = {
         enable = true,
         set_jumps = true,
         goto_next_start = {
-          [']m'] = '@function.outer',
-          [']]'] = '@class.outer',
+          [']]'] = '@function.outer',
+          [']m'] = '@class.outer',
         },
         goto_next_end = {
-          [']M'] = '@function.outer',
-          [']['] = '@class.outer',
+          [']['] = '@function.outer',
+          [']M'] = '@class.outer',
         },
         goto_previous_start = {
-          ['[m'] = '@function.outer',
-          ['[['] = '@class.outer',
+          ['[['] = '@function.outer',
+          ['[m'] = '@class.outer',
         },
         goto_previous_end = {
-          ['[M'] = '@function.outer',
-          ['[]'] = '@class.outer',
+          ['[]'] = '@function.outer',
+          ['[M'] = '@class.outer',
         },
       },
-      
+
       swap = {
         enable = true,
         swap_next = {
