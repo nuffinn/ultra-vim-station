@@ -75,6 +75,23 @@ function M.setup()
   vim.keymap.set('n', '<S-j>', function()
     require('gitsigns').blame_line({ full = true })
   end, { desc = 'Show git blame for current line' })
+
+  -- Toggle maximize/unmaximize current window
+  vim.keymap.set('n', '<leader>m', function()
+    if vim.t.maximized then
+      -- Restore the saved window layout
+      if vim.t.window_layout then
+        vim.cmd(vim.t.window_layout)
+      end
+      vim.t.maximized = false
+    else
+      -- Save current window layout before maximizing
+      vim.t.window_layout = vim.fn.winrestcmd()
+      vim.cmd('wincmd |')
+      vim.cmd('wincmd _')
+      vim.t.maximized = true
+    end
+  end, { desc = 'Toggle maximize current window' })
 end
 
 return M
