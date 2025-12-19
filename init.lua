@@ -22,5 +22,6 @@ require('plugins.ui').setup()
 require('plugins.windsurf').setup()
 require('plugins.claude-code').setup()
 require('plugins.git-worktree').setup()
+require('plugins.dap').setup()
 
 -- vim: ts=2 sts=2 sw=2 et

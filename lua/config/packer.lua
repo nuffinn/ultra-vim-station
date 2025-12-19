@@ -65,6 +65,8 @@ function M.setup()
     -- Debugging
     use { 'rcarriga/nvim-dap-ui', requires = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' } }
     use 'mfussenegger/nvim-dap'
+    use 'leoluz/nvim-dap-go'
+    use 'theHamsta/nvim-dap-virtual-text'
 
     -- LSP Configuration & Plugins
     use {
