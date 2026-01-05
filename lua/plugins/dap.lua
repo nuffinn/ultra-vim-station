@@ -127,6 +127,84 @@ function M.setup()
     },
   }
 
+  -- Setup TypeScript/JavaScript DAP adapter manually
+  dap.adapters['pwa-node'] = {
+    type = 'server',
+    host = 'localhost',
+    port = '${port}',
+    executable = {
+      command = 'node',
+      args = {
+        vim.fn.stdpath('data') .. '/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js',
+        '${port}',
+      },
+    },
+  }
+
+  -- TypeScript/JavaScript configurations
+  for _, language in ipairs({ 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' }) do
+    dap.configurations[language] = {
+      {
+        type = 'pwa-node',
+        request = 'launch',
+        name = 'Launch Server (build & debug)',
+        preLaunchTask = 'npm: build',
+        program = '${workspaceFolder}/build/index.js',
+        cwd = '${workspaceFolder}',
+        sourceMaps = true,
+        outFiles = { '${workspaceFolder}/build/**/*.js' },
+        console = 'integratedTerminal',
+        internalConsoleOptions = 'neverOpen',
+      },
+      {
+        type = 'pwa-node',
+        request = 'attach',
+        name = 'Attach to Process',
+        processId = require('dap.utils').pick_process,
+        cwd = '${workspaceFolder}',
+        sourceMaps = true,
+        outFiles = { '${workspaceFolder}/build/**/*.js' },
+      },
+      {
+        type = 'pwa-node',
+        request = 'launch',
+        name = 'Debug Current TS File',
+        program = '${file}',
+        cwd = '${workspaceFolder}',
+        runtimeArgs = { '-r', 'ts-node/register' },
+        sourceMaps = true,
+      },
+      {
+        type = 'pwa-node',
+        request = 'launch',
+        name = 'Debug Jest Tests',
+        runtimeExecutable = 'node',
+        runtimeArgs = {
+          './node_modules/jest/bin/jest.js',
+          '--runInBand',
+        },
+        rootPath = '${workspaceFolder}',
+        cwd = '${workspaceFolder}',
+        console = 'integratedTerminal',
+        internalConsoleOptions = 'neverOpen',
+      },
+      {
+        type = 'pwa-node',
+        request = 'launch',
+        name = 'Debug npm script',
+        runtimeExecutable = 'npm',
+        runtimeArgs = function()
+          local script = vim.fn.input('Script name: ')
+          return { 'run', script }
+        end,
+        rootPath = '${workspaceFolder}',
+        cwd = '${workspaceFolder}',
+        console = 'integratedTerminal',
+        internalConsoleOptions = 'neverOpen',
+      },
+    }
+  end
+
   -- Auto open/close UI
   dap.listeners.after.event_initialized['dapui_config'] = function()
     dapui.open()
