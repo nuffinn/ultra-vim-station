@@ -47,7 +47,7 @@ setup_macos() {
 
     # Install system dependencies
     echo "Installing system dependencies..."
-    brew install neovim go ripgrep fd node git make
+    brew install neovim go ripgrep fd node git make jq
 
     # Install Nerd Font
     echo "Installing Hack Nerd Font..."
@@ -63,7 +63,7 @@ setup_arch() {
 
     # Install system dependencies
     echo "Installing system dependencies..."
-    sudo pacman -S --noconfirm --needed neovim go ripgrep fd nodejs npm git base-devel unzip
+    sudo pacman -S --noconfirm --needed neovim go ripgrep fd nodejs npm git base-devel unzip jq
 
     # Install Nerd Font
     echo "Installing Hack Nerd Font..."
@@ -88,6 +88,10 @@ install_language_servers() {
     # fieldalignment - struct field alignment analyzer
     echo "  Installing fieldalignment..."
     go install golang.org/x/tools/go/analysis/passes/fieldalignment/cmd/fieldalignment@latest
+
+    # go-swagger - OpenAPI/Swagger code generator
+    echo "  Installing go-swagger..."
+    go install github.com/go-swagger/go-swagger/cmd/swagger@latest
 
     # TypeScript LSP
     echo "  Installing typescript-language-server..."

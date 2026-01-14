@@ -15,11 +15,11 @@ The installation script (`install.sh`) automatically sets up the following compo
 ### System Dependencies
 *   **Core:** `neovim`, `tmux`, `git`, `make` (or `base-devel`)
 *   **Runtime:** `go`, `node` (npm)
-*   **Utilities:** `ripgrep`, `fd`
+*   **Utilities:** `ripgrep`, `fd`, `jq`
 *   **Fonts:** `Hack Nerd Font`
 
 ### Language Servers & Tools
-*   **Go:** `gopls`, `golangci-lint`, `fieldalignment`
+*   **Go:** `gopls`, `golangci-lint`, `fieldalignment`, `go-swagger`
 *   **TypeScript:** `typescript-language-server`
 *   **Bash:** `bash-language-server`
 *   **JSON:** `vscode-langservers-extracted` (via `jsonls`)
