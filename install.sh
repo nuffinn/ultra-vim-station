@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # install.sh
-# Unified setup for Neovim configuration on macOS and Arch Linux
+# Unified workstation setup for Neovim and Tmux on macOS and Arch Linux
 # Supports: Go, TypeScript, Bash, and JSON LSP
 
 set -e
 
-echo "Starting Neovim setup..."
+echo "Starting workstation setup..."
 
 # Detect OS
 detect_os() {
@@ -178,10 +178,17 @@ bootstrap_plugins() {
     echo "Plugin installation completed."
 }
 
+# Setup tmux
+setup_tmux() {
+    echo "Setting up tmux..."
+    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    source "$SCRIPT_DIR/setup_tmux.sh"
+}
+
 # Main installation flow
 main() {
     echo "=================================="
-    echo "  Neovim Configuration Installer"
+    echo "  Workstation Setup Installer"
     echo "=================================="
     echo ""
 
@@ -196,6 +203,7 @@ main() {
     install_language_servers
     link_config
     bootstrap_plugins
+    setup_tmux
 
     echo ""
     echo "=================================="
@@ -204,10 +212,13 @@ main() {
     echo ""
     echo "Next steps:"
     echo "  1. Ensure your terminal is using 'Hack Nerd Font'."
-    echo "  2. Run 'nvim' to start."
+    echo "  2. Run 'nvim' to start Neovim."
     echo "  3. Inside nvim, run ':checkhealth' to verify everything is working."
+    echo "  4. Run 'tmux' to start a new tmux session."
     echo ""
-    echo "If plugins didn't install correctly, run ':PackerSync' inside nvim."
+    echo "If Neovim plugins didn't install correctly, run ':PackerSync' inside nvim."
+    echo ""
+    echo "Tmux prefix key is Ctrl+s (press Ctrl+s, then the command key)."
 }
 
 main "$@"
