@@ -93,6 +93,10 @@ install_language_servers() {
     echo "  Installing go-swagger..."
     go install github.com/go-swagger/go-swagger/cmd/swagger@latest
 
+    # Delve - Go debugger (DAP)
+    echo "  Installing delve (Go DAP)..."
+    go install github.com/go-delve/delve/cmd/dlv@latest
+
     # TypeScript LSP
     echo "  Installing typescript-language-server..."
     if [[ "$OS" == "arch" ]]; then
@@ -115,6 +119,14 @@ install_language_servers() {
         sudo npm install -g vscode-langservers-extracted
     else
         npm install -g vscode-langservers-extracted
+    fi
+
+    # TypeScript/JavaScript debugger (DAP)
+    echo "  Installing vscode-js-debug (TypeScript/JavaScript DAP)..."
+    if [[ "$OS" == "arch" ]]; then
+        sudo npm install -g @vscode/js-debug
+    else
+        npm install -g @vscode/js-debug
     fi
 }
 
